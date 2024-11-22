@@ -1,22 +1,32 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        int[] arr = {-1, -1, -1, 2, 2, 3};
+        int[] arr = {-1, -1, -1, 2, 2, 3,3,3};
         HashMap<Integer, Integer> a = new HashMap<>();
         for (int i = 0; i < arr.length; i++) {
             a.put(arr[i], a.getOrDefault(arr[i], 0) + 1);
         }
-        int maxKey = Integer.MIN_VALUE;
-        int maxFrequency = Integer.MIN_VALUE;;
+        int maxFrequency = Integer.MIN_VALUE;
 
+        // First pass to find the max frequency
         for (Map.Entry<Integer, Integer> entry : a.entrySet()) {
-            if (entry.getValue() > maxFrequency) {
-                maxFrequency = entry.getValue();
-                maxKey = entry.getKey();
+            maxFrequency = Math.max(maxFrequency, entry.getValue());
+        }
+
+        // Step 3: Collect all keys with the maximum frequency
+        ArrayList<Integer> result = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : a.entrySet()) {
+            if (entry.getValue() == maxFrequency) {
+                result.add(entry.getKey());
             }
         }
-        System.out.println( maxKey );
+
+        // Step 4: Print all elements with the max frequency
+        System.out.println(result);
     }
 }
+
+
