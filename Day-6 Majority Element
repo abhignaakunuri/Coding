@@ -10,21 +10,15 @@ public class Main {
             a.put(arr[i], a.getOrDefault(arr[i], 0) + 1);
         }
         int maxFrequency = Integer.MIN_VALUE;
-
-        // First pass to find the max frequency
         for (Map.Entry<Integer, Integer> entry : a.entrySet()) {
             maxFrequency = Math.max(maxFrequency, entry.getValue());
         }
-
-        // Step 3: Collect all keys with the maximum frequency
         ArrayList<Integer> result = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : a.entrySet()) {
             if (entry.getValue() == maxFrequency) {
                 result.add(entry.getKey());
             }
         }
-
-        // Step 4: Print all elements with the max frequency
         System.out.println(result);
     }
 }
